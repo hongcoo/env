@@ -23,6 +23,7 @@ Class Env{
      * isProduct
      * @description 判断是否为线上
      * @version 1.0.0
+     * @return bool
      */
     public static function isProduct(){}
 
@@ -30,6 +31,7 @@ Class Env{
      * isGray
      * @description 判断是否为灰度
      * @version 1.0.0
+     * @return bool
      */
     public static function isGray(){}
 
@@ -37,6 +39,7 @@ Class Env{
      * isDev
      * @description 判断是否为开发
      * @version 1.0.0
+     * @return bool
      */
     public static function isDev(){}
 
@@ -44,6 +47,7 @@ Class Env{
      * isLocal
      * @description 判断是否为本地
      * @version 1.0.0
+     * @return bool
      */
     public static function isLocal(){}
 }
