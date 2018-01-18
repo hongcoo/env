@@ -34,7 +34,6 @@ PHP_INI_BEGIN()
     STD_PHP_INI_ENTRY("env.name", "product", PHP_INI_SYSTEM, OnUpdateString, name, zend_env_globals, env_globals)
 PHP_INI_END()
 
-
 PHP_METHOD(env, getEnviron)
 {
 	RETURN_STR(zend_string_copy(zend_string_init(ENV_G(name),strlen(ENV_G(name)),0)));
@@ -42,7 +41,7 @@ PHP_METHOD(env, getEnviron)
 
 PHP_METHOD(env, isProduct)
 {
-	if(zend_string_equals(zend_string_init(ENV_G(name),strlen(ENV_G(name)),0),zend_string_init(ENV_ENVIORN_PRODUCT,strlen(ENV_ENVIORN_PRODUCT),0))){
+	if(strcmp(ENV_G(name),ENV_ENVIORN_PRODUCT)==0){
 		RETURN_TRUE
 	}
 	RETURN_FALSE
@@ -50,7 +49,7 @@ PHP_METHOD(env, isProduct)
 
 PHP_METHOD(env, isGray)
 {
-	if(zend_string_equals(zend_string_init(ENV_G(name),strlen(ENV_G(name)),0),zend_string_init(ENV_ENVIORN_GRAY,strlen(ENV_ENVIORN_GRAY),0))){
+	if(strcmp(ENV_G(name),ENV_ENVIORN_GRAY)==0){
 		RETURN_TRUE
 	}
 	RETURN_FALSE
@@ -58,7 +57,7 @@ PHP_METHOD(env, isGray)
 
 PHP_METHOD(env, isDev)
 {
-	if(zend_string_equals(zend_string_init(ENV_G(name),strlen(ENV_G(name)),0),zend_string_init(ENV_ENVIORN_DEV,strlen(ENV_ENVIORN_DEV),0))){
+	if(strcmp(ENV_G(name),ENV_ENVIORN_DEV)==0){
 		RETURN_TRUE
 	}
 	RETURN_FALSE
@@ -66,7 +65,7 @@ PHP_METHOD(env, isDev)
 
 PHP_METHOD(env, isLocal)
 {
-	if(zend_string_equals(zend_string_init(ENV_G(name),strlen(ENV_G(name)),0),zend_string_init(ENV_ENVIORN_LOCAL,strlen(ENV_ENVIORN_LOCAL),0))){
+	if(strcmp(ENV_G(name),ENV_ENVIORN_LOCAL)==0){
 		RETURN_TRUE
 	}
 	RETURN_FALSE
@@ -85,7 +84,6 @@ zend_function_entry env_methods[] =
 PHP_MINIT_FUNCTION (env)
 {
     zend_class_entry ce;
-
     REGISTER_INI_ENTRIES();
     REGISTER_STRINGL_CONSTANT("ENV\\VERSION", PHP_ENV_VERSION, sizeof(PHP_ENV_VERSION) - 1, CONST_PERSISTENT | CONST_CS);
     REGISTER_STRINGL_CONSTANT("ENV\\ENVIRON", ENV_G(name), strlen(ENV_G(name)), CONST_PERSISTENT | CONST_CS);
